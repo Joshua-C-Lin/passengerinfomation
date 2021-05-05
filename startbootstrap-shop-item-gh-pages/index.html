@@ -17,13 +17,14 @@
   <link href="css/shop-item.css" rel="stylesheet">
  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="../js/passlist.js"></script>
-  <script src="./sha1.js"></script>
+ 
   <!-- jQuery v1.9.1 -->
   <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
   <!-- DataTables v1.10.16 -->
   <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="./passlist.js"></script>
+  <script src="./sha1.js"></script>
 
 </head>
 
@@ -49,17 +50,17 @@
         <div class="list-group">
           <input type="date" class="form-control" id="select_data" name="shipdate"/>
 
-          <select class="list-group-item">
+          <select id="select_station" class="list-group-item">
             <option value="D">東港</option>
             <option value="L">小琉球</option>
           </select>
-          <select class="list-group-item">
+          <select id="select_timeTable" class="list-group-item">
             <option value="VOYAGE_TIME">班次時間</option>
           </select>
 
-          <select id="select_data">
+          <!-- <select id="select_data" value="">
 
-          </select>
+          </select> -->
 
         </div>
 
@@ -67,9 +68,9 @@
           $(".example").DataTable();
         </script>
 
-        <a class="btn btn-success w-100" onclick="clickSelect()">查詢</a>
+        <!-- <a class="btn btn-success w-100" onclick="searchClickOption()">條件查詢</a> -->
         <hr>
-        <a class="btn btn-success w-100" onclick="clickSend()">查詢</a>
+        <a class="btn btn-success w-100" onclick="sendList()">查詢</a>
         </form>
       </div>
 

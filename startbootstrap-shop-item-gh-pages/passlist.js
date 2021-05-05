@@ -1,10 +1,48 @@
-// $('#shipdate').on('change', function () {
-//     console.log('134');
-// });
+$(function () {
+    $('#select_data').on('change', function () {
+        searchClickOption($("#select_data").val());
+    })
+    
+    $('#select_station').on('change', function () {
+        searchClickOption($("#select_station").val());
+    })
 
+    Date.prototype.format = function (format) {
+        //eg:format="yyyy-MM-dd hh:mm:ss";
 
+        if (!format) {
+            format = "yyyy-MM-dd hh:mm:ss";
+        }
 
-function clickSend() {
+        var o = {
+            "M+": this.getMonth() + 1,  // month
+            "d+": this.getDate(),       // day
+            "H+": this.getHours(),      // hour
+            "h+": this.getHours(),      // hour
+            "m+": this.getMinutes(),    // minute
+            "s+": this.getSeconds(),    // second
+            "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
+            "S": this.getMilliseconds()
+        };
+
+        if (/(y+)/.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + "")
+                .substr(4 - RegExp.$1.length));
+        }
+
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                    ? o[k]
+                    : ("00" + o[k]).substr(("" + o[k]).length));
+            }
+        }
+
+        return format;
+    };
+
+});
+function sendList() {
     let dt = new Date().format("yyyyMMddHHmmss");
     let SHA1 = hex_sha1(
         "FUNC_ID=QueryManifest&SYS_DATE=" + dt
@@ -37,7 +75,6 @@ function clickSend() {
         }
     })
 }
-
 function ListData(data) {
 
     let table_html = '';
@@ -53,8 +90,7 @@ function ListData(data) {
     $('#table_data').html(table_infoMation);
 }
 
-
-function clickSelect() {
+function searchClickOption(apiGetDate) {
     let dt = new Date().format("yyyyMMddHHmmss");
     let SHA1 = hex_sha1(
         "FUNC_ID=QueryManifest&SYS_DATE=" + dt
@@ -70,7 +106,8 @@ function clickSelect() {
         "ACNT_NO": "088325806",
         "FUNC_SIG": "f6531a017fe8b4de8d46ecd3becc9e23ddcb53b2",
         "FUNC_DATA": {
-            "SHIPPING_DATE": "2021-04-20",
+            "SHIPPING_DATE": apiGetDate,
+            
         }
     })
 
@@ -86,52 +123,10 @@ function clickSelect() {
 
 }
 
-function SelectData(data) {
 
-    let select_data = '<select><option>' + data.SHIPPING_DATE + '</option><option>' + data.VESSELS.STATION + '</option></select>'
+function SelectData(data) {
+    let select_data = '<input>' + data.SHIPPING_DATE + '</input>'
     console.log(select_data)
 }
 
-$(function () {
-    $('#select_data').html(table_info);
-    $('#select_data').on('change', function () {
-        $("#select_data").val('');
-    })
 
-});
-
-
-
-Date.prototype.format = function (format) {
-    //eg:format="yyyy-MM-dd hh:mm:ss";
-
-    if (!format) {
-        format = "yyyy-MM-dd hh:mm:ss";
-    }
-
-    var o = {
-        "M+": this.getMonth() + 1,  // month
-        "d+": this.getDate(),       // day
-        "H+": this.getHours(),      // hour
-        "h+": this.getHours(),      // hour
-        "m+": this.getMinutes(),    // minute
-        "s+": this.getSeconds(),    // second
-        "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
-        "S": this.getMilliseconds()
-    };
-
-    if (/(y+)/.test(format)) {
-        format = format.replace(RegExp.$1, (this.getFullYear() + "")
-            .substr(4 - RegExp.$1.length));
-    }
-
-    for (var k in o) {
-        if (new RegExp("(" + k + ")").test(format)) {
-            format = format.replace(RegExp.$1, RegExp.$1.length == 1
-                ? o[k]
-                : ("00" + o[k]).substr(("" + o[k]).length));
-        }
-    }
-
-    return format;
-};

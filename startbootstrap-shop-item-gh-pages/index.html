@@ -15,8 +15,9 @@
 
   <!-- Custom styles for this template -->
   <link href="css/shop-item.css" rel="stylesheet">
-  <script src="../js/passlist.js"></script>
+ 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../js/passlist.js"></script>
   <script src="./sha1.js"></script>
   <!-- jQuery v1.9.1 -->
   <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -40,76 +41,67 @@
 
   <!-- Page Content -->
   <div class="container">
-
     <div class="row">
-
       <div class="col-lg-3">
         <form id="selectByboard">
         <h1 class="my-4" style="text-align: center;">查詢條件</h1>
-        <nav id="clearData" class="list-group">
-          <input type="date" class="form-control" id="date" name="date"/>
-          <select href="#" class="list-group-item">
-            $("#mySelect").append('<option value="VESSEL_ID"></option>');
-            <option value="SHIPPING_DATE">航班日期</option>
+
+        <div class="list-group">
+          <input type="date" class="form-control" id="select_data" name="shipdate"/>
+
+          <select class="list-group-item">
+            <option value="D">東港</option>
+            <option value="L">小琉球</option>
           </select>
-          <select href="#" class="list-group-item">
-            <option value="STATION">航站</option>
-          </select>
-          <select href="#" class="list-group-item">
+          <select class="list-group-item">
             <option value="VOYAGE_TIME">班次時間</option>
           </select>
 
-           <select id="optionSelect">
-             <option></option>
-           </select>
+          <select id="">
 
-        </nav>
+          </select>
+
+        </div>
+
+        <script>
+          $(".example").DataTable();
+        </script>
+
+        <a class="btn btn-success w-100" onclick="clickSelect()">查詢</a>
         <hr>
-      </form>
-      <div>
         <a class="btn btn-success w-100" onclick="clickSend()">查詢</a>
+        </form>
       </div>
 
-
       <div class="col-lg-12">
-
-
-        <div class="card mt-4">
-        <a class="btn btn-success w-100" onclick="clickSend()">查詢</a>
-
-          <!-- <img class="card-img-top img-fluid" src="" alt=""> -->
-          <!-- <div class="card-body">
-            <h3 class="card-title" id="SHIPPING_DATE">航班日期</h3>
-            <h4 id="STATION">航站</h4>
-            <h4 id="VOYAGE">班次</h4>
-            <h4 id="VOYAGE_TIME">班次時間</h4>
-          </div>
-        </div> -->
-          <table class="example">
-            <div id="head_table">
+        <div class="carousel slide my-4" id="carouselExampleIndicators" data-ride="carousel">
+          <div class="card mt-4 ">
+              <table class="example">
+                <div id="head_table">
+                </div>
+                <thead>
+                  <tr>
+                    <td>航班日期</td>
+                    <td>船舶號數</td>
+                    <td>船舶名稱</td>
+                    <td>航站</td>
+                    <td>班次</td>
+                    <td>班次時間</td>
+                    <td>乘客人數</td>
+                    <td>票券號碼</td>
+                    <td>登船時間</td>
+                    <td>證件類別</td>
+                    <td>證件號碼</td>
+                    <td>姓名</td>
+                  </tr>
+                </thead>
+                <tbody id="table_data">
+                </tbody>
+              </table>
+              <script>
+                $(".example").DataTable();
+              </script>
             </div>
-            <thead>
-              <tr>
-                <td>航班日期</td>
-                <td>船舶號數</td>
-                <td>船舶名稱</td>
-                <td>航站</td>
-                <td>班次</td>
-                <td>班次時間</td>
-                <td>乘客人數</td>
-                <td>票券號碼</td>
-                <td>登船時間</td>
-                <td>證件類別</td>
-                <td>證件號碼</td>
-                <td>姓名</td>
-              </tr>
-            </thead>
-            <tbody id="table_data">
-            </tbody>
-          </table>
-          <script>
-            $(".example").DataTable();
-          </script>
         </div>
         <!-- /.col-lg-9 -->
 

@@ -129,7 +129,7 @@ $(function () {
     // console.log(options)
     let optionsArray = Array.from(options);
     // console.log(optionsArray)
-    console.log(response.SHPIPING_DATE);
+    console.log(response.SHIPPING_DATE);
     $("#select_station").html(
       optionsArray
         .map(
@@ -144,13 +144,13 @@ $(function () {
     renderTimeOptionsByVoyage(
       response.VESSELS,
       $("#select_station").val(),
-      response.SHPIPING_DATE
+      response.SHIPPING_DATE
     );
     $("#select_station").on("change", (e) => {
       renderTimeOptionsByVoyage(
         response.VESSELS,
         $("#select_station").val(),
-        response.SHPIPING_DATE
+        response.SHIPPING_DATE
       );
     });
   }
